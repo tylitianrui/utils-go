@@ -19,14 +19,14 @@ func TestRandInt(t *testing.T) {
 
 }
 
-//func TestCreateRandomString(t *testing.T) {
-//	for i:=0; i < 100; i++ {
-//		l:= RandUpperLetter(12)
-//		if  len(l)==12{
-//			t.Log(l)
-//		}else {
-//			t.Fail()
-//		}
-//	}
-//
-//}
+func TestCreateRandomString(t *testing.T) {
+	for i := 0; i < 100; i++ {
+		l := RandLetterUpper(12)
+		if len(l) == 12 {
+			t.Log(l)
+		} else {
+			t.Fail()
+		}
+	}
+
+}

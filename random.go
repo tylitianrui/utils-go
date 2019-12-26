@@ -33,6 +33,10 @@ func RandInt(start, end int) (int, error) {
 	return rand.Intn(r) + start, nil
 }
 
+func RandLetterUpper(n int) string {
+	return RandLetter(n, LetterUpper)
+}
+
 //
 func RandLetter(len int, kind RandKind) string {
 	b := make([]byte, len)
@@ -57,7 +61,7 @@ func RandLetter(len int, kind RandKind) string {
 		idx := rand.Intn(l)
 
 		if idx >= NumLetter {
-			idx += 7
+			idx += 6
 		}
 
 		b[i] = byte(idx + s)
