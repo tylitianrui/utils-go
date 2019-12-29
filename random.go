@@ -37,6 +37,10 @@ func RandLetterUpper(n int) string {
 	return RandLetter(n, LetterUpper)
 }
 
+func RandLetterLower(n int) string {
+	return RandLetter(n, LetterLower)
+}
+
 //
 func RandLetter(len int, kind RandKind) string {
 	b := make([]byte, len)
@@ -49,7 +53,7 @@ func RandLetter(len int, kind RandKind) string {
 		s = LowerStart
 		l = NumLetter
 
-	case UpperStart:
+	case LetterUpper:
 		s = UpperStart
 		l = NumLetter
 	default:

@@ -30,3 +30,14 @@ func TestCreateRandomString(t *testing.T) {
 	}
 
 }
+
+func TestRandLetterLower(t *testing.T) {
+	for i := 0; i < 100; i++ {
+		l := RandLetterLower(12)
+		if len(l) == 12 {
+			t.Log(l)
+		} else {
+			t.Fail()
+		}
+	}
+}
