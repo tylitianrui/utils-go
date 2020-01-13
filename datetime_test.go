@@ -1,6 +1,9 @@
 package utils
 
-import "testing"
+import (
+	"testing"
+	"time"
+)
 
 func TestTimestamp(t *testing.T) {
 	t.Logf("current timestamp(secodes):%d", Timestamp())
@@ -17,4 +20,13 @@ func TestTimestampMicro(t *testing.T) {
 func TestTimestampMilli(t *testing.T) {
 	t.Logf("current timestamp(milli-secodes):%d", TimestampMilli())
 
+}
+
+func TestTime2Stamp(t *testing.T) {
+	//now := time.Now()
+	timeTemplate := "2006-01-02 15:04:05"
+	t1 := "2019-01-08 13:50:30"
+	//time,_:=time.ParseInLocation(timeTemplate, t1, time.Local)
+	time, _ := time.Parse(timeTemplate, t1)
+	t.Log(time)
 }
