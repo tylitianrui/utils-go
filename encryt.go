@@ -3,6 +3,7 @@ package utils
 import (
 	"crypto/md5"
 	"crypto/sha1"
+	"crypto/sha256"
 	"encoding/base64"
 	"encoding/hex"
 )
@@ -17,6 +18,13 @@ func MD5(b []byte) string {
 // return  sha1 checksum value
 func SHA1(b []byte) string {
 	checksum := sha1.Sum(b)
+	return hex.EncodeToString(checksum[:])
+
+}
+
+// return  sha256 checksum value
+func Hmac(b []byte) string {
+	checksum := sha256.Sum256(b)
 	return hex.EncodeToString(checksum[:])
 
 }
