@@ -1,9 +1,15 @@
 package utils
 
 import (
+	"bufio"
+	"errors"
+	"fmt"
+	"io"
 	"io/ioutil"
 	"os"
+	"path"
 	"path/filepath"
+	"strings"
 )
 
 // current path
@@ -42,4 +48,52 @@ func SubFileName(path string) ([]string, error) {
 		list = append(list, file.Name())
 	}
 	return list, nil
+}
+
+func CopyFile(src, dst, rename string) error {
+
+	var (
+		b   bool
+		err error
+	)
+
+	if b, err = Exist(src); err != nil || !b {
+		return err
+	}
+	rename = strings.ReplaceAll(rename, " ", "")
+	if rename != "" {
+		dst = path.Join(dst, rename)
+
+	}
+
+	if b, err = Exist(dst); b {
+
+		return errors.New(fmt.Sprintf("%s已经存在", dst))
+	}
+
+	return copy(src, dst)
+
+}
+
+func copy(src, dst string) error {
+	var (
+		rf, wf *os.File
+		err    error
+	)
+
+	if rf, err = os.Open(src); err != nil {
+		return err
+	}
+	defer rf.Close()
+	reader := bufio.NewReader(rf)
+
+	wf, err = os.OpenFile(dst, os.O_WRONLY|os.O_CREATE, 0666)
+	if err != nil {
+		return err
+	}
+	defer wf.Close()
+	writer := bufio.NewWriter(wf)
+
+	_, err = io.Copy(writer, reader)
+	return err
 }
