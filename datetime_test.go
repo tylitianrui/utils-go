@@ -30,3 +30,9 @@ func TestTime2Stamp(t *testing.T) {
 	time, _ := time.Parse(timeTemplate, t1)
 	t.Log(time)
 }
+
+func TestAddTime(t *testing.T) {
+	h, e := AddTime(time.Now(), "-1d")
+	t.Log(e)
+	t.Log(h)
+}
