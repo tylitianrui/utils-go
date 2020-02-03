@@ -28,3 +28,22 @@ func TestConvert10toN(t *testing.T) {
 
 	}
 }
+
+func TestVerifyEmail(t *testing.T) {
+	data := []struct {
+		email string
+		res   bool
+	}{
+		{"_abc@sample.com", false},
+		{"a23..bc@sample.com", false},
+		{"a23.-bc@sample.com", false},
+		{"a23.bc.@sample.com", false},
+		{"2abc@sample.com", true},
+	}
+	for _, value := range data {
+		if VerifyEmail(&value.email) != value.res {
+			t.Fail()
+		}
+	}
+
+}

@@ -1,6 +1,9 @@
 package utils
 
-import "fmt"
+import (
+	"fmt"
+	"regexp"
+)
 
 var (
 	NumBase = []string{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
@@ -19,4 +22,14 @@ func Convert10toN(input, n int) string {
 		return fmt.Sprintf("%s", NumBase[input])
 	}
 	return fmt.Sprintf("%s%s", Convert10toN(input/n, n), NumBase[input%n])
+}
+
+var emailRegexp = regexp.MustCompile(`^[\da-z]+([\-\.\_]?[\da-z]+)*@[\da-z]+([\-\.]?[\da-z]+)*(\.[a-z]{2,})+$`)
+
+func VerifyEmail(email *string) bool {
+	s := emailRegexp.FindString(*email)
+	if s != "" {
+		return true
+	}
+	return false
 }
