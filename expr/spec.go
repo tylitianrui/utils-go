@@ -98,6 +98,7 @@ type boolExpr struct {
 
 var boolRegexp = regexp.MustCompile(`^!*(true|false)([\|&!= \t]{1}|$)`)
 
+// ^[\da-z]+([\-\.\_]?[\da-z]+)*@[\da-z]+([\-\.]?[\da-z]+)*(\.[a-z]{2,})+$
 func readBoolExpr(expr *string) Expr {
 	s := boolRegexp.FindString(*expr)
 	if s == "" {
