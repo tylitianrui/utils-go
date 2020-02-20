@@ -2,6 +2,7 @@ package utils
 
 import (
 	"fmt"
+	"os"
 	"regexp"
 )
 
@@ -32,4 +33,17 @@ func VerifyEmail(email *string) bool {
 		return true
 	}
 	return false
+}
+
+// 获取环境变量 key的值，不存在则返回默认值defval
+func GetEnvWithDefault(key, defval string) string {
+	var (
+		ok  bool
+		val string
+	)
+	if val, ok = os.LookupEnv(key); ok {
+		return val
+	}
+	return defval
+
 }
